@@ -6,7 +6,7 @@ module OmniAuth
       option :name, :hootsuite
 
       option :client_options, {
-        :site => 'https://api.hootsuite.com',
+        :site => 'https://apis.hootsuite.com',
         :authorize_url => 'https://apis.hootsuite.com/auth/oauth/v2/authorize',
         :token_url => 'https://apis.hootsuite.com/auth/oauth/v2/token'
       }
@@ -26,7 +26,14 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/v1/me').parsed
+        res = access_token.get('/v1/me')
+        pp res
+        pp res.parsed
+        @raw_info ||= res.parsed
+      end
+
+      def callback_url
+        options[:redirect_uri] || (full_host + script_name + callback_path)
       end
     end
   end
