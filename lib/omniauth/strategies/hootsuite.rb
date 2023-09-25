@@ -6,9 +6,9 @@ module OmniAuth
       option :name, :hootsuite
 
       option :client_options, {
-        :site => 'https://apis.hootsuite.com',
-        :authorize_url => 'https://apis.hootsuite.com/auth/oauth/v2/authorize',
-        :token_url => 'https://apis.hootsuite.com/auth/oauth/v2/token'
+        site: 'https://platform.hootsuite.com',
+        authorize_url: 'https://platform.hootsuite.com/oauth2/auth',
+        token_url: 'https://platform.hootsuite.com/oauth2/token'
       }
 
       uid { raw_info['data']['id'].to_s }
